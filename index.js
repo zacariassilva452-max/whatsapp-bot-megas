@@ -82,9 +82,17 @@ client.on('message', async (msg) => {
         await client.sendMessage(`${ADMIN_NUMBER}@c.us`, `🔔 *SUPORTE*\nCliente: ${name}\nNúmero: ${from.replace('@c.us','')}`);
         return;
     }
-    if (state.step === 'pedido') {
+    if (state.st=== 'pedido') {
         state.pedido = msg.body.trim(); state.step = 'numero';
         await client.sendMessage(from, `✅ Pedido: ${state.pedido}\n\n📱 Qual é o teu número Vodacom?`);
         return;
     }
     if (state.step === 'numero') {
+
+        // Servidor HTTP para o Railway
+const http = require('http');
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot activo!');
+}).listen(PORT, () => console.log(`Servidor na porta ${PORT}`));
